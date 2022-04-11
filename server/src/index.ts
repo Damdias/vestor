@@ -14,7 +14,8 @@ import { notFound } from "./routes/not-found";
 import { createCompany } from "./routes/create-company";
 import { createShareholder } from "./routes/create-shareholder";
 import { updateShareholder } from "./routes/update-shareholder";
-import { deleteShareholder } from "./routes/delete-Shareholder";
+import { deleteShareholder } from "./routes/delete-shareholder";
+import { getAllCompany } from "./routes/get-company";
 import { getAllShareholder } from "./routes/get-shareholder";
 import { splitShares } from "./routes/split-shares";
 
@@ -53,6 +54,7 @@ app.use(createShareholder);
 app.use(updateShareholder);
 app.use(deleteShareholder);
 app.use(getAllShareholder);
+app.use(getAllCompany);
 app.use(splitShares);
 
 app.get("/api/heart-beat", (req, res) => {

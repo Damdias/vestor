@@ -41,7 +41,7 @@
           class="form-control"
           [(ngModel)]="selectedCompany"
         >
-          <option *ngFor="let c of allCompanies" [ngValue]="c">
+          <option *ngFor="let c of companies" [ngValue]="c">
             {{ c.name }}
           </option>
         </select>

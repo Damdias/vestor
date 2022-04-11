@@ -29,14 +29,15 @@ export class CreateShareHolderComponent implements OnInit {
   share: Share = new Share("", "", 0, "");
   closeResult = "";
   selectedCompany: Company;
+  companies: Array<Company> = [];
 
   ngOnInit(): void {
-    this.selectedCompany = this.allCompanies[0];
+    this.companyRepository.getAllCompany().subscribe((item) => {
+      this.companies = item.map((c) => new Company(c.id, c.name));
+      this.selectedCompany = this.companies[0];
+    });
   }
 
-  get allCompanies(): Company[] {
-    return this.companyRepository.getAllCompany();
-  }
   open() {
     this.modalService
       .open(this.content, { ariaLabelledBy: "modal-basic-title" })

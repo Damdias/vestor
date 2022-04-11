@@ -6,11 +6,13 @@ import { CompanyRepository } from "../repositories/company.repository";
 import { CreateComponent } from "./create/create.component";
 import { SharedModule } from "../shared/shared.module";
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [ListComponent, CreateComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     SharedModule,
     FormsModule,
     RouterModule.forRoot([
