@@ -2,13 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Company } from "../models/company.model";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class CompanyRepository {
   constructor(private httpClient: HttpClient) {}
 
   getAllCompany(): Observable<Company[]> {
-    return this.httpClient.get<Company[]>("http://localhost:5002/api/company");
+    return this.httpClient.get<Company[]>(`${environment.apiUrl}/api/company`);
   }
   add(company: Company) {
     const companyDTO = {
@@ -22,7 +23,7 @@ export class CompanyRepository {
       ],
     };
     return this.httpClient.post(
-      "http://localhost:5002/api/company",
+      `${environment.apiUrl}/api/company`,
       companyDTO
     );
   }
