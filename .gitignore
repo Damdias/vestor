@@ -1,0 +1,11 @@
+
+.vscode
+/common/node_modules
+/common/build
+
+/server/node_modules
+
+
+/client/node_modules
+/client/e2e
+/client/.editorconfig

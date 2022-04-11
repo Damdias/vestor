@@ -1,0 +1,57 @@
+<ng-template #share_content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form #companyForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          maxlength="50"
+          class="form-control"
+          name="name"
+          [(ngModel)]="share.name"
+          placeholder="Enter Name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Shares</label>
+        <input
+          type="text"
+          maxlength="100"
+          class="form-control"
+          name="shares"
+          [(ngModel)]="share.shares"
+          placeholder="Enter initial shares"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Company</label>
+        <select class="form-control">
+          <option *ngFor="let c of allCompanies" value="c">{{ c.name }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="save()">
+      Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
