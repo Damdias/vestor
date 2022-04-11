@@ -26,10 +26,13 @@ export class CreateShareHolderComponent implements OnInit {
   @Input() title: string;
   @Output() newCompanyEvent = new EventEmitter<Share>();
 
-  share: Share = new Share(0, "", 0, "");
+  share: Share = new Share("", "", 0, "");
   closeResult = "";
+  selectedCompany: Company;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedCompany = this.allCompanies[0];
+  }
 
   get allCompanies(): Company[] {
     return this.companyRepository.getAllCompany();
@@ -56,5 +59,9 @@ export class CreateShareHolderComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  save() {}
+  save() {
+    alert("alert");
+    console.log("share ", this.share);
+    console.log("company", this.selectedCompany);
+  }
 }

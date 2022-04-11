@@ -21,7 +21,7 @@ export class CreateComponent implements OnInit {
   @Input() title: string;
   @Output() newCompanyEvent = new EventEmitter<Company>();
 
-  company: Company = new Company(0, "", 0);
+  company: Company = new Company("", "", 0);
 
   closeResult = "";
   ngOnInit(): void {}
