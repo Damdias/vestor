@@ -13,4 +13,4 @@ router.get(
   }
 );
 
-export { router as getAllShareholder };
+export { router as getShareholdersByCompany };

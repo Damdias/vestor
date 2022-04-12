@@ -16,7 +16,8 @@ import { createShareholder } from "./routes/create-shareholder";
 import { updateShareholder } from "./routes/update-shareholder";
 import { deleteShareholder } from "./routes/delete-shareholder";
 import { getAllCompany } from "./routes/get-company";
-import { getAllShareholder } from "./routes/get-shareholder";
+import { getShareholdersByCompany } from "./routes/get-shareholder";
+import { getAllShareholder } from "./routes/get-all-shareholders";
 import { splitShares } from "./routes/split-shares";
 
 import cors from "cors";
@@ -55,6 +56,7 @@ app.use(updateShareholder);
 app.use(deleteShareholder);
 app.use(getAllShareholder);
 app.use(getAllCompany);
+app.use(getAllShareholder);
 app.use(splitShares);
 
 app.get("/api/heart-beat", (req, res) => {

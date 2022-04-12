@@ -8,6 +8,7 @@ import {
   ElementRef,
 } from "@angular/core";
 import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { iif } from "rxjs";
 import { Company } from "src/app/models/company.model";
 import { Share } from "src/app/models/share.model";
 import { CompanyRepository } from "src/app/repositories/company.repository";
@@ -24,9 +25,10 @@ export class CreateShareHolderComponent implements OnInit {
   ) {}
   @ViewChild("share_content", { static: true }) content: ElementRef;
   @Input() title: string;
-  @Output() newCompanyEvent = new EventEmitter<Share>();
+  @Output() onCreate = new EventEmitter<Share>();
+  @Output() onEdit = new EventEmitter<Share>();
 
-  share: Share = new Share("", "", 0, "");
+  share: Share;
   closeResult = "";
   selectedCompany: Company;
   companies: Array<Company> = [];
@@ -38,7 +40,12 @@ export class CreateShareHolderComponent implements OnInit {
     });
   }
 
-  open() {
+  open(shareHolder?: Share) {
+    if (shareHolder) {
+      this.share = shareHolder;
+    } else {
+      this.share = new Share("", "", 0, "");
+    }
     this.modalService
       .open(this.content, { ariaLabelledBy: "modal-basic-title" })
       .result.then(
@@ -61,8 +68,12 @@ export class CreateShareHolderComponent implements OnInit {
     }
   }
   save() {
-    alert("alert");
-    console.log("share ", this.share);
-    console.log("company", this.selectedCompany);
+    this.share.companyId = this.selectedCompany;
+    if (this.share.id != "") {
+      this.onEdit.emit(this.share);
+    } else {
+      this.onCreate.emit(this.share);
+    }
+    this.modalService.dismissAll();
   }
 }

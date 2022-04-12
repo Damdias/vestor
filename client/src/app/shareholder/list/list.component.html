@@ -1,3 +1,13 @@
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    (click)="newModal.open()"
+  >
+    Add
+  </button>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -9,20 +19,29 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allShares; index as id">
+    <tr *ngFor="let item of shareHolders; index as id">
       <th scope="row">{{ id + 1 }}</th>
       <td>{{ item.name }}</td>
-      <td>{{ item.shares }}</td>
-      <td>{{ item.company }}</td>
+      <td>{{ item.stocks }}</td>
+      <td>{{ item.companyId.name }}</td>
       <td>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          (click)="newModal.open()"
-        >
-          Add
-        </button>
+        <div class="action-button">
+          <button
+            type="button"
+            data-toggle="modal"
+            (click)="newModal.open(item)"
+            class="btn btn-success"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            (click)="deleteModal.open(item)"
+            class="btn btn-warning"
+          >
+            Delete
+          </button>
+        </div>
       </td>
     </tr>
   </tbody>
@@ -30,5 +49,8 @@
 <app-create-share-holder
   title="New Shareholder"
   #newModal
-  (newCompanyEvent)="newHandler($event)"
+  (onCreate)="creteHandler($event)"
+  (onEdit)="editHandler($event)"
 ></app-create-share-holder>
+<app-delete #deleteModal (onDeleteConfirm)="deleteConfirmHandler($event)">
+</app-delete>

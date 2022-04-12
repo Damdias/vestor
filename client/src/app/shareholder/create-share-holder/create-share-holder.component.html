@@ -9,7 +9,7 @@
     ></button>
   </div>
   <div class="modal-body">
-    <form #companyForm="ngForm">
+    <form #shareHolderForm="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -29,7 +29,7 @@
           maxlength="100"
           class="form-control"
           name="shares"
-          [(ngModel)]="share.shares"
+          [(ngModel)]="share.stocks"
           placeholder="Enter initial shares"
           required
         />

@@ -27,7 +27,7 @@ const ShareholderSchema = new mongoose.Schema(
     stocks: {
       type: Number,
     },
-    companyId: { type: mongoose.Schema.Types.ObjectId, ref: "Company" },
+    companyId: { type: mongoose.Schema.Types.ObjectId, ref: "company" },
     userId: {
       type: String,
       required: true,
