@@ -27,4 +27,10 @@ export class CompanyRepository {
       companyDTO
     );
   }
+  split(companyId: string, shares: number) {
+    return this.httpClient.post(`${environment.apiUrl}/api/company/split`, {
+      companyId,
+      shares,
+    });
+  }
 }

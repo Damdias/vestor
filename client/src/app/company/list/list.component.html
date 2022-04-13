@@ -1,3 +1,13 @@
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    (click)="newModal.open()"
+  >
+    Add
+  </button>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -15,11 +25,11 @@
       <td>
         <button
           type="button"
-          class="btn btn-primary"
           data-toggle="modal"
-          (click)="newModal.open()"
+          (click)="splitModal.open(item.id)"
+          class="btn btn-primary"
         >
-          Add
+          Split Share
         </button>
       </td>
     </tr>
@@ -30,3 +40,8 @@
   #newModal
   (newCompanyEvent)="newHandler($event)"
 ></app-create>
+<app-split-share
+  #splitModal
+  title="Split Share"
+  (onSplit)="splitHandler($event)"
+></app-split-share>

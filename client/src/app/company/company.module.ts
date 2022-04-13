@@ -7,9 +7,10 @@ import { CreateComponent } from "./create/create.component";
 import { SharedModule } from "../shared/shared.module";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { SplitShareComponent } from './split-share/split-share.component';
 
 @NgModule({
-  declarations: [ListComponent, CreateComponent],
+  declarations: [ListComponent, CreateComponent, SplitShareComponent],
   imports: [
     CommonModule,
     HttpClientModule,
