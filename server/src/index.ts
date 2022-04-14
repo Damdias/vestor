@@ -9,6 +9,7 @@ import SwaggerUi from "swagger-ui-express";
 import SwaggerJsdoc from "swagger-jsdoc";
 
 import { errorHandler } from "vestor-common";
+import dotenv from "dotenv";
 
 import { notFound } from "./routes/not-found";
 import { createCompany } from "./routes/create-company";
@@ -23,6 +24,12 @@ import { splitShares } from "./routes/split-shares";
 import cors from "cors";
 
 import cookieSession from "cookie-session";
+
+dotenv.config({
+  path: path.resolve(__dirname, `../${process.env.NODE_ENV}.env`),
+});
+// dotenv.config();
+console.log("path1 *************", process.env);
 
 const PORT = 5002;
 const app = express();
@@ -66,9 +73,9 @@ app.get("/api/heart-beat", (req, res) => {
 app.use(notFound);
 
 app.use(errorHandler);
-
+const DEFAULT_URL = "mongodb://localhost:27017/vestors";
 const init = async () => {
-  mongoose.connect("mongodb://localhost:27017/vestors", {}, (err) => {
+  mongoose.connect(process.env.MONGO_URL || "", {}, (err) => {
     if (err) {
       console.log(err);
     } else {

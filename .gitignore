@@ -9,3 +9,6 @@
 /client/node_modules
 /client/e2e
 /client/.editorconfig
+/client/dist
+/server/build
+**/*.tgz
