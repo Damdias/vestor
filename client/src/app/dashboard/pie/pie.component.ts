@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import * as d3 from "d3";
 
 @Component({
@@ -8,21 +8,17 @@ import * as d3 from "d3";
 })
 export class PieComponent implements OnInit {
   constructor() {}
-
+  @Input() dataSource: Array<{ company: string; shares: number }> = [];
   ngOnInit(): void {
     this.createSvg();
     this.createColors();
     this.drawChart();
   }
 
-  private data = [
-    { company: "Orvero", shares: "350" },
-    { company: "Virtusa", shares: "600" },
-  ];
   private svg;
   private margin = 50;
-  private width = 750;
-  private height = 600;
+  private width = 300;
+  private height = 300;
   private radius = Math.min(this.width, this.height) / 2 - this.margin;
   private colors;
 
@@ -41,7 +37,7 @@ export class PieComponent implements OnInit {
   private createColors(): void {
     this.colors = d3
       .scaleOrdinal()
-      .domain(this.data.map((d) => d.shares.toString()))
+      .domain(this.dataSource.map((d) => d.shares.toString()))
       .range(["#c7d3ec", "#a5b8db", "#879cc4", "#677795", "#5a6782"]);
   }
   private drawChart(): void {
@@ -51,7 +47,7 @@ export class PieComponent implements OnInit {
     // Build the pie chart
     this.svg
       .selectAll("pieces")
-      .data(pie(this.data))
+      .data(pie(this.dataSource))
       .enter()
       .append("path")
       .attr("d", d3.arc().innerRadius(0).outerRadius(this.radius))
@@ -64,7 +60,7 @@ export class PieComponent implements OnInit {
 
     this.svg
       .selectAll("pieces")
-      .data(pie(this.data))
+      .data(pie(this.dataSource))
       .enter()
       .append("text")
       .text((d) => d.data.company)
