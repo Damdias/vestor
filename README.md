@@ -23,7 +23,9 @@ Cheers
 
 Dash board
 
-<img width="1306" alt="image" src="https://user-images.githubusercontent.com/16229310/162918015-cecfcfc4-b3d5-47bf-9ce8-03f3faf8915f.png">
+![image](https://user-images.githubusercontent.com/16229310/164157275-1832d3f0-1a41-45db-ac1e-05020c60e467.png)
+
+
 
 Shareholders
 
